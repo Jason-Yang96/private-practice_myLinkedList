@@ -1,4 +1,6 @@
-public class MyLinkedList {
+package myQueueEasy;
+
+public class MyQueue_light {
     // 유의 사항: data의 타입은 LinkedList를 생성할 때 정할 수 있는 제네릭으로 구현
 
     // 노드의 첫 부분을 가리키는 포인트
