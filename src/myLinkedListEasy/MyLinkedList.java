@@ -90,15 +90,7 @@ public class MyLinkedList<E> {
         if ( index > size - 1) {
             return;
         }
-        if (index == 0) {
-            Node<E> target = search(index);
-            head = target.next;
-            target.next = null;
-            target.item = null;
-            size--;
-            return;
-        }
-        if (size == 1) {
+        if (size == 1 || index ==0) {
             Node<E> target = search(index);
             head = null;
             tail = null;
