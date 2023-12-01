@@ -17,5 +17,19 @@ public class Main {
         System.out.println(list);
         list.remove(3);
         System.out.println(list);
+
+
+        for (Integer item:list)
+              {
+                  System.out.println(item);
+        }
+        /*
+         * list 자체를 순회할 수 있도록 해야 하나?
+         * 그러면 어떻게 해야 하지? 반환 값을 받아서
+         * for(int data: linkedList) {
+            sout(data);
+        } -> 하나씩 출력이 되야 한다. 그걸 구현.
+         */
+
     }
 }

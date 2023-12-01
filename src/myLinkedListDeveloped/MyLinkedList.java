@@ -1,8 +1,11 @@
 package myLinkedListDeveloped;
 
 import java.util.Arrays;
+import java.util.Iterator;
+import java.util.ListIterator;
+import java.util.NoSuchElementException;
 
-public class MyLinkedList<E> {
+public class MyLinkedList<E> implements Iterable<E> {
 
     // 유의 사항: data의 타입은 LinkedList를 생성할 때 정할 수 있는 제네릭으로 구현
 
@@ -20,20 +23,52 @@ public class MyLinkedList<E> {
         this.size = 0;
     }
 
+    public class IterableHelper implements Iterator<E>{
+        private Node<E> index;
+
+        IterableHelper() {
+            this.index = head;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return index != null;
+        }
+        @Override
+        public E next(){
+            if (!hasNext()) {
+                throw new NoSuchElementException();
+            }
+            E val = index.item;
+            index = index.next;
+            return val;
+        }
+
+        /*
+        public Object printArr() {
+            Object[] array = new Object[size];
+            for (int i = 0; i <= size; i++) {
+                array[i] = (E) next();
+            }
+            return array;
+        }
+
+         */
+    }
+
     // 노드 클래스 정의(private static)
     private static class Node<E> {
+
         // 인스턴스 필드 정의
         public E item;
-        public Node<E> next; //만약 private라면 무슨일이 생기지?
 
+        public Node<E> next; //만약 private라면 무슨일이 생기지?
         // 노드 생성자
         Node(E item, Node<E> next) {
             this.item = item;
             this.next = next;
         }
-
     }
-
     // 노드 검색 메서드 정의(인덱스가 주어졌을 때 그 인덱스에 맞춰서 노드 탐색_처음부터) -> 노드 반환
     private Node<E> search(int index) {
         Node<E> n = head;
@@ -42,8 +77,8 @@ public class MyLinkedList<E> {
         }
         return n;
     }
-
     // 노드 추가 메서드
+
     // 노드 추가 메서드_가장 첫번째
     public void addFirst(E item) {
         // 순서에 따라서 head가 참조하는 값이 엉킬 수 있다... 초기에 추가 전 처음 값 백업
@@ -105,6 +140,10 @@ public class MyLinkedList<E> {
      * 여기서는 인스턴스 출력 시 인스턴스가 가지고 있는 배열 값을 출력하도록 만듦
      */
     @Override
+    public Iterator<E> iterator() {
+        return new IterableHelper();
+    }
+    @Override
     public String toString() {
         if (head == null) {
             return "[]";
@@ -117,7 +156,6 @@ public class MyLinkedList<E> {
         }
         return Arrays.toString(array);
     }
-
     // 노드 제거 메서드
     // 노드 제거 메서드_가장 첫번째
     public E removeFirst() {
@@ -158,7 +196,9 @@ public class MyLinkedList<E> {
         }
         return returnItem;
     }
+
     // 노드 제거 메서드_원하는 인덱스
+
     public E remove(int index){
         if (index < 0 || index >= size) { // 가독성을 위해서는 index >= size 로 만들어 줘야 하나
             throw new IndexOutOfBoundsException();
