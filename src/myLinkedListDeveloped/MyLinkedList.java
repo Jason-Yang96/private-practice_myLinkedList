@@ -221,9 +221,24 @@ public class MyLinkedList<E> implements Iterable<E> {
         return returnItem;
     }
 
-    // 노드 제거 메서드_원하는 값을 가진 노드
-
-    // 인덱스에 맞는 노드 반환
+    // 인덱스에 맞는 값 반환
+    public E get(int index) {
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException();
+        }
+        return search(index).item;
+    }
 
     // 특정 인덱스에 값 변경하기
+    public void set(int index, E value) {
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException();
+        }
+
+        // 1. search 메소드를 이용해 교체할 노드를 얻는다.
+        Node<E> replace_node = search(index);
+
+        // 2. 교체할 노드의 요소를 변경한다.
+        replace_node.item = value;
+    }
 }
