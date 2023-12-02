@@ -1,6 +1,7 @@
 package myQueueEasy;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class MyQueue<T> {
     /*
@@ -46,10 +47,20 @@ public class MyQueue<T> {
         if (this.queue.isEmpty()) {
             return null;
         }
-        return this.queue.remove(this.queue.size() - 1);
+        return this.queue.remove(0);
     }
+
     @Override
-    public java.lang.String toString() {
-        return super.toString();
+    public String toString() {
+        int queueSize = this.queue.size();
+        Object[] queueElements = new Object[queueSize];
+        if (queueSize == 0) {
+            return "[]";
+        }
+        for (int i = 0; i < queueSize; i++) {
+            queueElements[i] = this.queue.get(i);
+        }
+        return Arrays.toString(queueElements);
+
     }
 }

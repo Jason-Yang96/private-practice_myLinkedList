@@ -9,7 +9,15 @@ public class Main {
     */
     public static void main(String[] args) {
         MyQueue<String> myQueue = new MyQueue<>();
-        myQueue.enqueue("love you");
+        myQueue.enqueue("jason");
+        myQueue.enqueue("enqueue");
+        myQueue.enqueue("check");
+        myQueue.enqueue("check");
         myQueue.dequeue();
+        myQueue.dequeue();
+        System.out.println(myQueue);
+
+
+        // sout(myQueue) -> queue list print
     }
 }
